@@ -1,0 +1,41 @@
+O acesso a tabela de albuns do banco gravacoes está no package dbgravacoes  (github.com/SergioPedron/estudosGo_dbgravacoes)
+
+Trabalhando com workspace na estrutura:
+* workSpace_webServiceGin
+  - dbgravacoes
+  - webServiceGin
+  go.work
+
+  Até liberar versão de dbgravacoes, go.work fica assim:
+  use (
+	./dbgravacoes
+  	./webServiceGin
+  )
+
+No workspace executar como:  go run ./webServiceGin
+Ou direto no diretório webServiceGin:  go run .
+
+--------------------------------------------------------------------------------------------------------------
+
+Package utilizados:
+  "github.com/gin-gonic/gin"
+       Usar get e install:
+       go get github.com/gin-gonic/gin
+       go install github.com/gin-gonic/gin
+
+       Pode ser que o go get . não funcione:
+           go get .   (vai tentar instalar todos do go.mod e vai dar problema se o nosso estudosGo_dbgravacoes ainda não tiver sido versionado ou transferido para o git)
+ 
+-------------------------------------------------------------------------------------------------------------
+
+Teste:
+curl http://localhost:8080/novoalbum \
+--include \
+--header "Content-Type: application/json" \
+--request "POST" \
+--data '{"titulo": "O Passageiro","artista": "Capital Inicial","preco": 49.99}'
+
+curl http://localhost:8080/albuns \
+    --header "Content-Type: application/json" \
+    --request "GET"   
+--------------------------------------------------------------------------------------------------------------
